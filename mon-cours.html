@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<meta charset=utf-8>
-<title>NOTRE cours html avec Stéphane</title>
-<style>
-	body {
-		background-color: orange;
-	}
-	h1 {
-		font-size: 18px;
-		font-family: arial;
-	}
-</style>
+<meta charset=utf8>
 
-<script>
-	console.log('hello world')
-</script>
+<style>
+  ul {
+    background: grey;
+    list-style-type: none;
+  }
+</style>
 
 <h1>Mon cours avec Stephane sur le HTML</h1>
 <p>un format plat (pas de fioritures <em>non visible</em> comme sur word)</p>
@@ -21,9 +13,19 @@
 <p>cela permet de sémantiser le contenu</p>
 <a href=http://lamyne.org>site de la myne</a>
 
-<ul>
-  <li>projecteur</li>
-</ul>
+<ul id=countries></ul>
 
+<script>
+  const ul = document.querySelector('ul')
 
+  fetch('https://raw.githubusercontent.com/devfriendlyplaces/data/master/locations/montpellier.json')
+    .then(response => response.json())
+    .then(places => {
+      places.map(place => {
+        const li = document.createElement('li')
+        li.append(`${place.name} - ${place.lat} - ${place.lon}`)
+        ul.appendChild(li)
+      })
+    })
 
+</script>
