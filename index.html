@@ -20,5 +20,22 @@
 
 <h1>Les lieux de Montpellier</h1>
 
-<ul id=places></ul>
+<ul></ul>
+
+<script>
+
+  fetch('https://raw.githubusercontent.com/devfriendlyplaces/data/master/locations/montpellier.json')
+    .then(response => response.json())
+    .then(jsonPlaces => {
+      const places = document.querySelector('ul')
+
+      jsonPlaces.forEach(jsonPlace => {
+        const place = document.createElement('li')
+        place.append(jsonPlace.name)
+        places.append(place)
+      })
+
+    })
+
+</script>
 
